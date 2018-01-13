@@ -1,6 +1,6 @@
 package castle.game.model.unit;
 
-public abstract class Unit {
+public abstract class Unit implements Fighter{
     protected String name;
     protected String type;
     protected CombatStats stats;

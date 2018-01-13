@@ -5,16 +5,16 @@ package castle.game.unit;
  */
 public class CombatStats {
     //Basic stats
-    private int maxHealth;
-    private int currentHealth;
-    private int armor;
-    private int minDamage;
-    private int maxDamage;
+    private int maxHealth = 0;
+    private int currentHealth = 0;
+    private int armor = 0;
+    private int minDamage = 0;
+    private int maxDamage = -1;
 
     //Determines how often the units attack. Defense for defending and offense
     //for attacking.
-    private int offense;
-    private int defense;
+    private int offense = 0;
+    private int defense = 0;
 
     //To see if the unit is dead.
     private boolean isAlive;
@@ -61,6 +61,9 @@ public class CombatStats {
      */
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+        if (maxHealth <= 1){
+            this.maxHealth = 1;
+        }
         if(currentHealth > maxHealth){
             setCurrentHealth(this.maxHealth);
         }
@@ -81,10 +84,10 @@ public class CombatStats {
      * @param currentHealth The new value of the units current health.
      */
     public void setCurrentHealth(int currentHealth) {
-        if(currentHealth < 0){
+        this.currentHealth = currentHealth;
+        if(currentHealth <= 0){
             kill();
         }
-        this.currentHealth = currentHealth;
     }
 
     /**
@@ -119,8 +122,12 @@ public class CombatStats {
     public void setMinDamage(int minDamage) {
         if (minDamage < 0){
             this.minDamage = 0;
+            System.out.println("goes here?");
+        } else if (maxDamage != -1 && minDamage > maxDamage){
+            this.minDamage = maxDamage;
+        } else {
+            this.minDamage = minDamage;
         }
-        this.minDamage = minDamage;
     }
 
     /**
@@ -136,7 +143,11 @@ public class CombatStats {
      * @param maxDamage The new value for the maximum damage of the unit.
      */
     public void setMaxDamage(int maxDamage) {
-        //TODO fix this method.
+        if (maxDamage < minDamage){
+            this.maxDamage = minDamage;
+        } else {
+            this.maxDamage = maxDamage;
+        }
     }
 
     /**
@@ -152,7 +163,11 @@ public class CombatStats {
      * @param offense The new value for the offense points of the unit.
      */
     public void setOffense(int offense) {
-        //TODO fix method
+        if (offense < 0){
+            this.offense = 0;
+        } else {
+            this.offense = offense;
+        }
     }
 
     /**
@@ -168,7 +183,11 @@ public class CombatStats {
      * @param defense The new value for the defense points of the unit.
      */
     public void setDefense(int defense) {
-        //TODO fix method
+        if (defense < 0){
+            this.defense = 0;
+        } else {
+            this.defense = defense;
+        }
     }
 
     /**
@@ -191,6 +210,6 @@ public class CombatStats {
      * Kills the unit. Sets Alive to false.
      */
     public void kill(){
-        isAlive = true;
+        isAlive = false;
     }
 }

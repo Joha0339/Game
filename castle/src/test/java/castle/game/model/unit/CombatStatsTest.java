@@ -1,4 +1,4 @@
-package castle.game.unit;
+package castle.game.model.unit;
 
 import org.junit.After;
 import org.junit.Before;

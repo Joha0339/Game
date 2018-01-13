@@ -1,4 +1,4 @@
-package castle.game.unit;
+package castle.game.model.unit;
 
 /**
  * All the stats a unit needs.

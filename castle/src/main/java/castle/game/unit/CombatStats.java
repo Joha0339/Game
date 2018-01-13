@@ -61,6 +61,9 @@ public class CombatStats {
      */
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+        if(currentHealth > maxHealth){
+            setCurrentHealth(this.maxHealth);
+        }
     }
 
     /**
@@ -78,7 +81,10 @@ public class CombatStats {
      * @param currentHealth The new value of the units current health.
      */
     public void setCurrentHealth(int currentHealth) {
-        //TODO fix method
+        if(currentHealth < 0){
+            kill();
+        }
+        this.currentHealth = currentHealth;
     }
 
     /**
@@ -111,7 +117,10 @@ public class CombatStats {
      * @param minDamage The new value for the minimum damage of the unit.
      */
     public void setMinDamage(int minDamage) {
-        //TODO Fix this method.
+        if (minDamage < 0){
+            this.minDamage = 0;
+        }
+        this.minDamage = minDamage;
     }
 
     /**

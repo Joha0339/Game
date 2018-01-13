@@ -1,8 +1,6 @@
 package castle.game.unit;
 
 public abstract class Unit {
+    private CombatStats stats;
 
-    private int health;
-    private int offence;
-    private int defence;
 }

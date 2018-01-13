@@ -1,0 +1,21 @@
+    private int health;
+    private int armor;
+    private int[] damage;
+
+    private int offence;
+    private int defence;
+
+    private int threat;
+
+
+
+    offenceA = 500, DefenceB = 250
+    Larger/smaller.
+
+    TimerA = Larger/smaller
+    TimerB = 1;
+
+    Larger goes.
+    while TimerA > 1 Larger goes again.
+    Smaller goes
+

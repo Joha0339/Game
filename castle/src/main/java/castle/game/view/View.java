@@ -1,12 +1,15 @@
 package castle.game.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class View {
-    JFrame mainWindow;
+    private JFrame mainWindow;
+    private JButton button;
 
     public View(){
         setUpMainWindow();
+        createTestButton();
 
     }
 
@@ -20,23 +23,34 @@ public class View {
 
     private void createTestButton(){
 
-        JButton button = new JButton("Militia");
+        button = new JButton("Militia");
 
         JPanel panel = new JPanel();
+        panel.add(button);
+
+        mainWindow.add(panel);
     }
 
-    private void createUnitWindow(String name, String type, String description){
-        JFrame unitFrame = new JFrame("name");
-        unitFrame.setSize(800, 600);
-        unitFrame.setResizable(false);
+    public void createUnitWindow(String name, String type, String description){
+        JFrame unitFrame = new JFrame(name);
+        unitFrame.setSize(300, 200);
+        unitFrame.setLayout(new BorderLayout());
+        unitFrame.setMinimumSize(new Dimension(300, 200));
 
         JTextArea area = new JTextArea();
         area.append("Type: " + type + "\n");
         area.append(description);
+        area.setEditable(false);
 
         JPanel panel = new JPanel();
-        panel.add(area);
+        panel.setLayout(new BorderLayout());
+        panel.add(area, BorderLayout.CENTER);
 
+        unitFrame.add(panel, BorderLayout.CENTER);
         unitFrame.setVisible(true);
+    }
+
+    public JButton getButton() {
+        return button;
     }
 }

@@ -212,4 +212,23 @@ public class CombatStats {
     public void kill(){
         isAlive = false;
     }
+
+    @Override
+    public String toString(){
+        String finalString;
+        String healthString;
+        String armorString;
+        String damageString;
+        String offenseString;
+        String defenseString;
+        healthString = "Health: " + currentHealth + "/" + maxHealth + ".\n";
+        armorString = "Armor: " + armor + ".\n";
+        damageString = "Damage: " + minDamage + "-" + maxDamage + ".\n";
+        offenseString = "Offensive power: " + offense + ".\n";
+        defenseString = "Defensive power: " + defense + ".\n";
+        finalString = healthString + armorString + damageString + offenseString
+                + defenseString;
+
+        return finalString;
+    }
 }

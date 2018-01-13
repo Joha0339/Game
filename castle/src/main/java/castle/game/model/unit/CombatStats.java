@@ -11,10 +11,13 @@ public class CombatStats {
     private int minDamage = 0;
     private int maxDamage = -1;
 
-    //Determines how often the units attack. Defense for defending and offense
-    //for attacking.
+    //Defense for defending and offense for attacking.
+    //Does nothing atm.
     private int offense = 0;
     private int defense = 0;
+
+    //Decides who attacks first. Higher is better.
+    private int initiative = 0;
 
     //To see if the unit is dead.
     private boolean isAlive;
@@ -207,6 +210,22 @@ public class CombatStats {
     }
 
     /**
+     * Gets the initiative of the unit.
+     * @return The initiative of the unti.
+     */
+    public int getInitiative() {
+        return initiative;
+    }
+
+    /**
+     * Sets the initiative of the unit.
+     * @param initiative Sets the new initiative of the unit.
+     */
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    /**
      * Kills the unit. Sets Alive to false.
      */
     public void kill(){
@@ -221,13 +240,15 @@ public class CombatStats {
         String damageString;
         String offenseString;
         String defenseString;
+        String initiativeString;
         healthString = "Health: " + currentHealth + "/" + maxHealth + ".\n";
         armorString = "Armor: " + armor + ".\n";
         damageString = "Damage: " + minDamage + "-" + maxDamage + ".\n";
         offenseString = "Offensive power: " + offense + ".\n";
         defenseString = "Defensive power: " + defense + ".\n";
+        initiativeString = "Initiative: " + initiative +".\n";
         finalString = healthString + armorString + damageString + offenseString
-                + defenseString;
+                + defenseString +initiativeString;
 
         return finalString;
     }

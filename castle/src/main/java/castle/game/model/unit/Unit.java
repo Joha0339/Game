@@ -1,6 +1,6 @@
 package castle.game.model.unit;
 
-public abstract class Unit implements Fighter{
+public abstract class Unit implements Comparable, Fighter {
     protected String name;
     protected String type;
     protected CombatStats stats;
@@ -41,4 +41,10 @@ public abstract class Unit implements Fighter{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int compareTo(Unit compareUnit){
+        int compareInit = compareUnit.getStats().getInitiative();
+        return this.getStats().getInitiative() - compareInit;
+    }
+
 }

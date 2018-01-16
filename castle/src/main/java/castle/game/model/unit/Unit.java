@@ -1,5 +1,7 @@
 package castle.game.model.unit;
 
+import java.util.ArrayList;
+
 public abstract class Unit implements Comparable<Unit>, Fighter {
     protected String name;
     protected String type;

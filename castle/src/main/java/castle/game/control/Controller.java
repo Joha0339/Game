@@ -48,16 +48,16 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             ArrayList<Unit> attackers = new ArrayList<Unit>();
-            attackers.add(new Militia("Josef"));
-            attackers.add(new Militia("Peter"));
-            attackers.add(new Militia("Simon"));
-            attackers.add(new Militia("Anna"));
+            attackers.add(new Militia());
+            attackers.add(new Militia());
+            attackers.add(new Militia());
+            attackers.add(new Militia());
 
             ArrayList<Unit> defenders = new ArrayList<Unit>();
-            defenders.add(new Militia("Joel"));
-            defenders.add(new Militia("Oskar"));
-            defenders.add(new Militia("Emil"));
-            defenders.add(new Militia("Henke"));
+            defenders.add(new Militia());
+            defenders.add(new Militia());
+            defenders.add(new Militia());
+            defenders.add(new Militia());
 
             Battle battle = new Battle(attackers, defenders);
             int poop = battle.doBattle();

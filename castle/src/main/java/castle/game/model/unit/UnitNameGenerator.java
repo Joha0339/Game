@@ -16,7 +16,7 @@ public class UnitNameGenerator {
         names = new ArrayList<String>();
         FileReader input = null;
         try {
-            input = new FileReader("UnitNames.txt");
+            input = new FileReader("src/resources/UnitNames.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

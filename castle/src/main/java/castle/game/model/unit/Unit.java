@@ -1,10 +1,12 @@
 package castle.game.model.unit;
 
-public abstract class Unit implements Comparable, Fighter {
+public abstract class Unit implements Comparable<Unit>, Fighter {
     protected String name;
     protected String type;
     protected CombatStats stats;
     protected String description;
+    protected boolean isReady = true;
+    private int team = 0;
     //private Image picture;
 
     public Unit(){
@@ -42,9 +44,24 @@ public abstract class Unit implements Comparable, Fighter {
         this.description = description;
     }
 
+    public void setReady(boolean ready) {
+        isReady = ready;
+    }
+
+    public boolean isReady() {
+        return isReady;
+    }
+
+    public int getTeam() {
+        return team;
+    }
+
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
     public int compareTo(Unit compareUnit){
         int compareInit = compareUnit.getStats().getInitiative();
         return this.getStats().getInitiative() - compareInit;
     }
-
 }

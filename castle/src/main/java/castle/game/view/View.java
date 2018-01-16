@@ -6,6 +6,7 @@ import java.awt.*;
 public class View {
     private JFrame mainWindow;
     private JButton button;
+    private JButton button2;
 
     public View(){
         setUpMainWindow();
@@ -16,17 +17,20 @@ public class View {
     private void setUpMainWindow(){
         mainWindow = new JFrame("Joels shitty game");
         mainWindow.setSize(800, 600);
+        mainWindow.setMinimumSize(new Dimension(800, 600));
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainWindow.setResizable(false);
+        mainWindow.setResizable(true);
         mainWindow.setVisible(true);
     }
 
     private void createTestButton(){
 
         button = new JButton("Militia");
+        button2 = new JButton("To Battle!");
 
         JPanel panel = new JPanel();
         panel.add(button);
+        panel.add(button2);
 
         mainWindow.add(panel);
     }
@@ -52,5 +56,9 @@ public class View {
 
     public JButton getButton() {
         return button;
+    }
+
+    public JButton getButton2() {
+        return button2;
     }
 }

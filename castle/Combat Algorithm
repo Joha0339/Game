@@ -1,21 +1,27 @@
     private int health;
     private int armor;
     private int[] damage;
+    private int offence; //attack mod
+    private int defence; //kontring
+    private int initiative;
 
-    private int offence;
-    private int defence;
+    Unit.ReadyStatus
 
-    private int threat;
+    Frontline -> Frontline else Random
+    Flank -> Flank else Ranged else Random
+    Ranged -> Random not Flank else Flank
 
+    Josef 8
+    Peter 6
+    Simon 3
+    Anna 1
+        VS
+    Emil 8
+    Oskar 2
 
-
-    offenceA = 500, DefenceB = 250
-    Larger/smaller.
-
-    TimerA = Larger/smaller
-    TimerB = 1;
-
-    Larger goes.
-    while TimerA > 1 Larger goes again.
-    Smaller goes
+    Josef och Emil random
+    Peter
+    Simon
+    Oskar
+    Anna
 

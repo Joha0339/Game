@@ -125,7 +125,6 @@ public class CombatStats {
     public void setMinDamage(int minDamage) {
         if (minDamage < 0){
             this.minDamage = 0;
-            System.out.println("goes here?");
         } else if (maxDamage != -1 && minDamage > maxDamage){
             this.minDamage = maxDamage;
         } else {
@@ -232,6 +231,14 @@ public class CombatStats {
         isAlive = false;
     }
 
+    /**
+     * Sets the health of the unit to the current value minus damage.
+     * @param damage The damage dealt.
+     */
+    public void dealDamage(int damage){
+        setCurrentHealth(getCurrentHealth() - damage);
+    }
+
     @Override
     public String toString(){
         String finalString;
@@ -241,12 +248,12 @@ public class CombatStats {
         String offenseString;
         String defenseString;
         String initiativeString;
-        healthString = "Health: " + currentHealth + "/" + maxHealth + ".\n";
-        armorString = "Armor: " + armor + ".\n";
-        damageString = "Damage: " + minDamage + "-" + maxDamage + ".\n";
-        offenseString = "Offensive power: " + offense + ".\n";
-        defenseString = "Defensive power: " + defense + ".\n";
-        initiativeString = "Initiative: " + initiative +".\n";
+        healthString = "\nHealth: " + currentHealth + "/" + maxHealth + "\n";
+        armorString = "Armor: " + armor + "\n";
+        damageString = "Damage: " + minDamage + "-" + maxDamage + "\n";
+        offenseString = "Offensive power: " + offense + "\n";
+        defenseString = "Defensive power: " + defense + "\n";
+        initiativeString = "Initiative: " + initiative +"\n";
         finalString = healthString + armorString + damageString + offenseString
                 + defenseString +initiativeString;
 

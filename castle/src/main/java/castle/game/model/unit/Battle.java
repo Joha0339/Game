@@ -10,27 +10,42 @@ public class Battle {
     private ArrayList<Unit> attackers;
     private ArrayList<Unit> defenders;
 
+    /**
+     * Constructor for the battle. Takes a list of attackers and a list of
+     * defenders.
+     * @param attackers The list of attackers. Team 1.
+     * @param defenders The list of defenders. Team 2.
+     */
     public Battle(ArrayList<Unit> attackers, ArrayList<Unit> defenders){
 
         this.attackers = attackers;
         this.defenders = defenders;
     }
 
-    public int doBattle(){
-        while(attackers.size() > 0 && defenders.size() > 0){
-            System.out.println(attackers.size() + " - " + defenders.size());
+    /**
+     * Makes the two armies fight untill only one of them has any living units.
+     * @return The winner. 0 = none, 1 = attackers, 2 = defenders.
+     */
+    public synchronized int doBattle(){
+        while(anyoneAlive(attackers) && anyoneAlive(defenders)){
             combatStep();
         }
-        if (attackers.size() > 0){
+        if (anyoneAlive(attackers)){
             return 1;
         }
-        if (defenders.size() > 0){
+        if (anyoneAlive(defenders)){
             return 2;
         }
         return 0;
     }
 
-    public void fight(Unit attacker, Unit defender){
+    /**
+     * Makes two units fight each other. They will deal their damage with all
+     * modifiers to each other. Will set both to not ready.
+     * @param attacker The attacker.
+     * @param defender The defender.
+     */
+    public synchronized void fight(Unit attacker, Unit defender){
 
         //Sets ut damage for attacker.
         int atkMult = attacker.getStats().getOffense();
@@ -77,18 +92,12 @@ public class Battle {
 
         attacker.setReady(false);
         defender.setReady(false);
-
-        if(!attacker.getStats().isAlive()){
-            attackers.remove(attacker);
-        }
-
-        if(!defender.getStats().isAlive()){
-            defenders.remove(defender);
-        }
-
     }
 
-    public void combatStep(){
+    /**
+     * This makes all units fight one other unit.
+     */
+    public synchronized void combatStep(){
 
         System.out.println("---NEW ROUND---\n");
 
@@ -97,21 +106,26 @@ public class Battle {
         ArrayList<Unit> initiativeList = new ArrayList<Unit>();
 
         for(Unit unit : attackers){
-            unit.setReady(true);
-            unit.setTeam(1);
-            initiativeList.add(unit);
+            if (unit.getStats().isAlive()){
+                unit.setReady(true);
+                unit.setTeam(1);
+                initiativeList.add(unit);
+            }
         }
 
         for(Unit unit : defenders){
-            unit.setReady(true);
-            unit.setTeam(2);
-            initiativeList.add(unit);
+            if (unit.getStats().isAlive()){
+                unit.setReady(true);
+                unit.setTeam(2);
+                initiativeList.add(unit);
+            }
         }
 
-        Collections.shuffle(initiativeList);
+        Collections.sort(initiativeList);
 
         for(Unit unit : initiativeList){
-            if(attackers.size() > 0 && defenders.size() > 0){
+
+            if (anyoneAlive(attackers) && anyoneAlive(defenders)){
                 if(unit.isReady()){
                     if(unit.getTeam() == 1){
                         int index = random.nextInt(defenders.size());
@@ -128,6 +142,12 @@ public class Battle {
         initiativeList = null;
     }
 
+    /**
+     * Calculates armor from damage. Damage = damage - armor (min 1).
+     * @param damage The damage.
+     * @param armor The armor.
+     * @return The damage after reduction.
+     */
     private int armorCalc(int damage, int armor){
 
         int outputDamage = damage - armor;
@@ -136,5 +156,19 @@ public class Battle {
         }
 
         return outputDamage;
+    }
+
+    /**
+     * Checks if anyone is alive in a list.
+     * @param list The attackers or defenders.
+     * @return True if anyone is alive else false.
+     */
+    private boolean anyoneAlive(ArrayList<Unit> list){
+        for(Unit unit : list){
+            if (unit.getStats().isAlive()){
+                return true;
+            }
+        }
+        return false;
     }
 }

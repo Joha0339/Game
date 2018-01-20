@@ -20,7 +20,7 @@ public class AudioController {
     public final static int SOUND_EFFECT_CANNON = 1;
 
     //private static int volume;
-    private static boolean muted = true;
+    private static boolean muted = false;
     private static AudioController instance = null;
     private static Music music = new Music("/MainMenu.wav");
     private static SoundEffect soundEffectCannon = new SoundEffect("/Cannon.wav");

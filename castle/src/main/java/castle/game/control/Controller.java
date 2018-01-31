@@ -23,13 +23,23 @@ public class Controller {
         model = new Model();
         view = new View();
 
-        view.getButton().addActionListener(new testButtonListener());
-        view.getButton2().addActionListener(new battleButtonListener());
+        view.getNewGame().addActionListener(new newGameButtonListener());
+        view.getLoadGame().addActionListener(new loadGameButtonListener());
+        view.getExit().addActionListener(new exitButtonListener());
+    }
+
+    private class exitButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            System.exit(0);
+        }
+
     }
 
 
 
-    private class testButtonListener implements ActionListener
+    private class loadGameButtonListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -43,7 +53,7 @@ public class Controller {
 
     }
 
-    private class battleButtonListener implements ActionListener
+    private class newGameButtonListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
